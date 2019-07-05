@@ -33,9 +33,7 @@
 							<input type="submit" value="Log In" />
 						</form>
 					</div>
-	
 				</div>
-
 		</div>
 	</div>
 </div>
