@@ -60,7 +60,6 @@ public class HomeController {
 		model.addAttribute("authRequestOptionsServiceClass", filter.getAuthRequestOptionsService().getClass().getSimpleName());
 		model.addAttribute("authRequestUriBuilderClass", filter.getAuthRequestUrlBuilder().getClass().getSimpleName());
 		model.addAttribute("admins", admins);
-
 		return "home";
 	}
 
@@ -78,9 +77,7 @@ public class HomeController {
 	@RequestMapping("/admin")
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	public String admin(Model model, Principal p) {
-
 		model.addAttribute("admins", admins);
-
 		return "admin";
 	}
 
