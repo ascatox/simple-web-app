@@ -63,15 +63,57 @@
             <groupId>org.springframework</groupId>
             <artifactId>spring-webmvc</artifactId>
         </dependency>
-<<<<<<< HEAD
         <dependency>
+            <groupId>org.web3j</groupId>
+            <artifactId>core</artifactId>
+            <version>4.5.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.web3j</groupId>
+            <artifactId>quorum</artifactId>
+            <version>4.0.6</version>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+            <scope>test</scope>
+        </dependency>	<dependency>
+        <groupId>org.web3j</groupId>
+        <artifactId>core</artifactId>
+        <version>4.5.0</version>
+    </dependency>
+
+        <dependency>
+            <groupId>org.web3j</groupId>
+            <artifactId>quorum</artifactId>
+            <version>4.0.6</version>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+
             <groupId>com.googlecode.json-simple</groupId>
             <artifactId>json-simple</artifactId>
             <version>1.1.1</version>
         </dependency>
-=======
-
->>>>>>> 893260bc61510ac0f18c4d311d0b9cfab18f4888
         <!-- Logging -->
         <dependency>
             <groupId>org.slf4j</groupId>
@@ -150,14 +192,11 @@
                 </exclusion>
             </exclusions>
         </dependency>
-<<<<<<< HEAD
         <dependency>
             <groupId>javax.annotation</groupId>
             <artifactId>javax.annotation-api</artifactId>
             <version>1.2</version>
         </dependency>
-=======
->>>>>>> 893260bc61510ac0f18c4d311d0b9cfab18f4888
     </dependencies>
     <build>
         <plugins>
@@ -206,22 +245,16 @@
                 <version>9.2.10.v20150310</version>
                 <configuration>
                     <scanIntervalSeconds>10</scanIntervalSeconds>
-<<<<<<< HEAD
-=======
                     <war>${project.basedir}/target/simple-web-app.war</war>
->>>>>>> 893260bc61510ac0f18c4d311d0b9cfab18f4888
                     <webApp>
                         <contextPath>/simple-web-app</contextPath>
                         <webInfIncludeJarPattern>.*/spring-[^/]*\.jar$</webInfIncludeJarPattern>
                     </webApp>
-<<<<<<< HEAD
-=======
                     <stopKey/>
                     <stopPort/>
                     <httpConnector>
                         <port>8080</port>
                     </httpConnector>
->>>>>>> 893260bc61510ac0f18c4d311d0b9cfab18f4888
                 </configuration>
             </plugin>
         </plugins>

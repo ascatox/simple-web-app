@@ -29,7 +29,6 @@ public class Census {
 
         String model = jsonHandler.read();
 
-        //
         Ppm ppm = createPpm("", model);//TODO params
         PolicyRequest payloadJson = new PolicyRequest(ppm, Function.insertPPM.name());
         HttpHeaders httpHeaders = new HttpHeaders();
