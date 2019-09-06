@@ -413,6 +413,10 @@ public class DIR extends Contract {
         return deployRemoteCall(DIR.class, web3j, transactionManager, gasPrice, gasLimit, BINARY, "");
     }
 
+    public RemoteFunctionCall<TransactionReceipt> getPIP() {
+        return null;
+    }
+
     public static class LogNewPIPEventResponse extends BaseEventResponse {
         public String sig;
 

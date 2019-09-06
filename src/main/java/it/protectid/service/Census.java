@@ -2,13 +2,10 @@ package it.protectid.service;
 
 import it.protectid.crypto.AsymmetricCryptography;
 import it.protectid.crypto.GenerateKeys;
-import it.protectid.policy.PolicyRequest;
-import it.protectid.policy.Ppm;
+import it.protectid.jquorum.QuorumImpl;
+import it.protectid.model.policy.Ppm;
 import it.protectid.utils.JsonHandler;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
-import org.springframework.web.client.RestTemplate;
+import javafx.util.Pair;
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.IllegalBlockSizeException;
@@ -19,28 +16,23 @@ import java.security.*;
 public class Census {
 
     final String urlPPL = "http://pip...";
-    JsonHandler jsonHandler;
-
-    public enum Function {
-        getPPM, insertPPM, deletePPM, getPPA, insertPPA, deletePPA, getPDC, insertPDC, deletePDC
-    }
+    private static JsonHandler jsonHandler;
+    private static QuorumImpl quorum;
 
     public String publishPolicy() {
 
-        String model = jsonHandler.read();
 
-        Ppm ppm = createPpm("", model);//TODO params
-        PolicyRequest payloadJson = new PolicyRequest(ppm, Function.insertPPM.name());
-        HttpHeaders httpHeaders = new HttpHeaders();
-        httpHeaders.setContentType(MediaType.APPLICATION_JSON);
-        HttpEntity<PolicyRequest> requestBody = new HttpEntity<>(payloadJson, httpHeaders);
-        RestTemplate restTemplate = new RestTemplate();
-        return restTemplate.postForObject(urlPPL, requestBody, String.class);
+
+        String model = jsonHandler.read();
+        Pair<String, Ppm> ppmPair = createPpm("", model);//TODO params
+        if (ppmPair.getKey() != null && ppmPair.getValue() != null)
+            return quorum.insertPPM(ppmPair.getValue(), ppmPair.getKey());
+        else return null;
 
     }
 
 
-    private Ppm createPpm(String addr, String model) {
+    private Pair<String, Ppm> createPpm(String addr, String model) {
 
         try {
             Ppm ppm = new Ppm();
@@ -53,8 +45,8 @@ public class Census {
             final PublicKey pk = gk.getPublicKey();
             AsymmetricCryptography ac = new AsymmetricCryptography();
             final String sig = ac.encryptText(ppm.toString(), sk);
-            ppm.setSig(sig);
-            return ppm;
+            Pair<String, Ppm> ppmPair = new Pair<>(sig, ppm);
+            return ppmPair;
 
         } catch (NoSuchAlgorithmException | BadPaddingException | InvalidKeyException | NoSuchPaddingException | NoSuchProviderException | IllegalBlockSizeException | UnsupportedEncodingException e) {
             e.printStackTrace();

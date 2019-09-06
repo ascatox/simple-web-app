@@ -1,5 +1,7 @@
 package it.protectid.policy;
 
+import it.protectid.model.policy.Ppm;
+
 public class PolicyRequest {
 
     public Ppm ppm;
